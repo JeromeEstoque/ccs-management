@@ -14,6 +14,7 @@ const adminRoutes = require("./routes/admin");
 const violationRoutes = require("./routes/violations");
 const certificateRoutes = require("./routes/certificates");
 const dashboardRoutes = require("./routes/dashboard");
+const setupRoutes = require("./routes/setup");
 
 const app = express();
 
@@ -51,6 +52,7 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/violations", violationRoutes);
 app.use("/api/certificates", certificateRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/setup", setupRoutes);
 
 // Health check route
 app.get("/api/health", (req, res) => {
