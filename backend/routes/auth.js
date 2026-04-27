@@ -358,7 +358,7 @@ router.post("/admin/login", async (req, res) => {
 });
 
 // Get current user info
-router.get("/me", authenticateToken, checkUserStatus, async (req, res) => {
+router.get("/me", authenticateToken, async (req, res) => {
   try {
     let user = null;
     let profileId = null;
