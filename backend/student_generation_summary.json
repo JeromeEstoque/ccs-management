@@ -1,0 +1,16 @@
+{
+  "total_students": 1000,
+  "gender_distribution": {
+    "male": 483,
+    "female": 517
+  },
+  "year_level_distribution": {
+    "1st Year": 253,
+    "2nd Year": 259,
+    "3rd Year": 239,
+    "4th Year": 249
+  },
+  "students_with_skills": 1000,
+  "working_students": 280,
+  "generation_date": "2026-04-26T17:30:23.027Z"
+}
