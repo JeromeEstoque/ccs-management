@@ -388,16 +388,30 @@ router.get("/me", authenticateToken, checkUserStatus, async (req, res) => {
       user = teachers[0];
       profileId = user?.id; // teacher table ID
     } else if (req.user.role === "admin") {
-      const [admins] = await pool.query(
-        `
-        SELECT id, username, email, status, last_login, created_at
-        FROM users
-        WHERE id = ? AND role = 'admin'
-      `,
-        [req.user.id],
-      );
-      user = admins[0];
-      profileId = user?.id;
+      // Handle fallback admin account
+      if (req.user.id === 1 && req.user.username === "admin") {
+        user = {
+          id: 1,
+          username: "admin",
+          email: "admin@ccs-management.com",
+          status: "active",
+          last_login: new Date().toISOString(),
+          created_at: new Date().toISOString(),
+          role: "admin",
+        };
+        profileId = user.id;
+      } else {
+        const [admins] = await pool.query(
+          `
+          SELECT id, username, email, status, last_login, created_at
+          FROM users
+          WHERE id = ? AND role = 'admin'
+        `,
+          [req.user.id],
+        );
+        user = admins[0];
+        profileId = user?.id;
+      }
     }
 
     if (!user) {
