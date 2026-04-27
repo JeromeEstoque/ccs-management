@@ -2,13 +2,13 @@ const mysql = require("mysql2/promise");
 const fs = require("fs");
 const path = require("path");
 
-// Railway MySQL connection details
+// Database connection details from environment variables
 const connectionConfig = {
-  host: "monorail.proxy.rlwy.net",
-  port: 23050,
-  user: "root",
-  password: "lHKmUyBOpIWRPrIpJbFJGhgaREJvlHyP",
-  database: "railway",
+  host: process.env.DB_HOST || "monorail.proxy.rlwy.net",
+  port: process.env.DB_PORT || 23050,
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "lHKmUyBOpIWRPrIpJbFJGhgaREJvlHyP",
+  database: process.env.DB_NAME || "railway",
   multipleStatements: true,
 };
 
