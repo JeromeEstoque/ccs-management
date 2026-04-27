@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const API_URL =
-  process.env.REACT_APP_API_URL || "https://ccs-backend-ls8n.onrender.com/api";
+  (process.env.REACT_APP_API_URL || "https://ccs-management.onrender.com") +
+  "/api";
 
 // Request interceptor for adding auth token
 axios.interceptors.request.use(
