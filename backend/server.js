@@ -18,12 +18,18 @@ const dashboardRoutes = require("./routes/dashboard");
 const app = express();
 
 // Enhanced CORS configuration
+const allowedOrigins =
+  process.env.NODE_ENV === "production"
+    ? [
+        process.env.FRONTEND_URL || "https://yourdomain.com",
+        "https://ccs-management-6v1rl7uls-jeromeestoques-projects.vercel.app",
+        "https://ccs-management.vercel.app",
+      ]
+    : ["http://localhost:3000", "http://127.0.0.1:3000"];
+
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "production"
-        ? [process.env.FRONTEND_URL || "https://yourdomain.com"]
-        : ["http://localhost:3000", "http://127.0.0.1:3000"],
+    origin: allowedOrigins,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
